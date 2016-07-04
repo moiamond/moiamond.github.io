@@ -1,8 +1,9 @@
 ##### Menu
 menu:
-  Home: /
-  Archives: /archives
-  About: /about
+  首頁 | Home: /
+  列表 | Index: /index
+  網誌存檔 | Archives: /archives
+  關於我 | About: /about
 ## you can create `tags` and `categories` folders in `../source`.
 ## And create a `index.md` file in each of them.
 ## set `front-matter`as
@@ -16,7 +17,6 @@ widgets:
 - category
 - tag
 - links
-- douban
 - rss
   ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo
 
