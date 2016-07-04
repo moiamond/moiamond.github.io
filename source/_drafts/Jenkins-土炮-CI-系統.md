@@ -1,4 +1,4 @@
-title: Jenkins: 土炮 CI 系統
+title: Jenkins- 土炮 CI 系統
 comments: true
 date: 2015-11-19 17:07:00
 categories:
