@@ -65,7 +65,7 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 theme: maupassant
 stylus:
-  compress: true
+  compress: false
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
