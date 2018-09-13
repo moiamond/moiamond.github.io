@@ -1,3 +1,4 @@
+---
 title: Docker架設Trac Wiki(題目暫定)
 comments: true
 date: 2015-09-07 22:27:20
@@ -5,26 +6,25 @@ categories:
 tags:
 - Docker
 - trac
-
 ---
 
-## 前言
+# 前言
 
 使用 Docker 也一段時間了，balah balah ...
 
+# Trac
 
-
-## Trac
-
-### Install Trac on Ubuntu trusty
+## Install Trac on Ubuntu trusty
 
 ```shell
 $ apt-get install trac
+...
 $ easy_install --upgrade Trac==1.0.8
 ```
 
-### 寫成`Dockerfile`
-```
+## 寫成`Dockerfile`
+
+```docker
 FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y \
@@ -34,10 +34,11 @@ RUN apt-get update && apt-get install -y \
 RUN easy_install --upgrade Trac==1.0.8
 ```
 
-## Trac 基本操作
+# Trac 基本操作
 
-### 開新專案
-```
+## 開新專案
+
+```shell
 $ mkdir repo
 $ trac-admin ./repo initenv
 Creating a new Trac environment at /root/repo
@@ -59,7 +60,9 @@ Project Name [My Project]>
 Database connection string [sqlite:db/trac.db]>
 ```
 
-### 使用 tracd 測試剛剛建立的專案
-```
+## 使用 tracd 測試剛剛建立的專案
+
+```shell
 $ tracd -p 8080 ./repo
+...
 ```

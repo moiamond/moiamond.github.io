@@ -1,3 +1,4 @@
+---
 layout: post
 title: "解決 Plex Media Server 讀不到 Aperture 的問題"
 date: 2014-08-03 23:02:25 +0800
@@ -10,7 +11,7 @@ tags:
 
 {% asset_img title.png [Plex Channels] %}
 
-## 前言
+# 前言
 
 使用 [Plex Media Server](https://plex.tv) 一陣子了，主要是拿來當家裡的影音中心。
 因為我使用 **Aperture** 來管理所有的照片，因此 [Plex Media Server](https://plex.tv) 透過 **Aperture** 來分享照片。
@@ -29,24 +30,24 @@ tags:
 
 在 Mac OS 下，其實可以透過內建的 **launchd** 做到這些事。
 
-## 進入正題
+# 進入正題
 
 這邊我分成兩個部分：
 
 * 如果 ApertureData.xml 有更新則砍掉 [Plex Media Server](https://plex.tv) 這隻程式
 * [Plex Media Server](https://plex.tv) 要一直保持啟動。
 
-
 `lauchd` 會載入存放在 `~/Library/LaunchAgents/` 的 `plist`
 
 接下來詳細的說明各個 `plist` 的內容：
 
-### 監控 `ApertureData.xml`
+## 監控 `ApertureData.xml`
+
 > 如果 ApertureData.xml 有更新，就執行會砍掉 Plex Media Server 這隻程式的 script
 
 新增 `com.plex.killme.plist` 內容如下：
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN
 http://www.apple.com/DTDs/PropertyList-1.0.dtd>
@@ -69,7 +70,7 @@ http://www.apple.com/DTDs/PropertyList-1.0.dtd>
 
 新增 kill-plex.sh 內容如下：
 
-```
+```shell
 #!/bin/bash
 sleep 60
 killall "Plex Media Server”
@@ -84,12 +85,13 @@ killall "Plex Media Server”
 常常也會發生看不到 **Aperture** 的情況。
 因此就先等60秒，看起來一切就正常了。
 
-### Keep alive
+## Keep alive
+
 > [Plex Media Server](https://plex.tv) 要一直保持啟動
 
 新增 `com.plex.keepalive.plist` 內容如下：
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -104,12 +106,12 @@ killall "Plex Media Server”
 </plist>
 ```
 
-### 準備就緒
+## 準備就緒
 
 當新增這兩個 `plist` 到 `~/Library/LaunchAgents/` 裡，如何馬上啟用？
 可以執行以下的指令：
 
-```
+```shell
 launchctl load ~/Library/LaunchAgents/com.plex.killme.plist
 launchctl load ~/Library/LaunchAgents/com.plex.keepalive.plist
 ```
